@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const apiSecretKey = require('./apiKey');
 
 const port = 3000;
 
 const licenceAPI = new express();
 const licenceRouter = express.Router();
+const apiKey = new apiSecretKey(port);
 
 licenceAPI.use(bodyParser.urlencoded({ extended: false }));
 licenceAPI.use(bodyParser.json());
@@ -14,7 +16,7 @@ licenceRouter.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Headers', "X-Requested-With");
 	res.header('Content-Type', 'text/json');
 
-	if(req.headers.key !== 'secret') {
+	if(req.headers.key !== apiKey.key) {
 		res.sendStatus(401);
 	} else {
 	  	next();
@@ -39,6 +41,12 @@ licenceRouter.route('/validateLicenceKey').get(function(req, res) {
 
 licenceAPI.use('/api', licenceRouter);
 
-licenceAPI.listen(port, () => {
-	console.log('Licence server live on port ' + port);
+apiKey.createApiSecret().then((key) => {
+	console.log('API access key is: ', key);
+	licenceAPI.listen(port, () => {
+		console.log('Licence server live on port ' + port);	
+	});
+}).catch((e) => {
+	console.log('Failed to start API server.');
+	console.log(e.Message);
 });

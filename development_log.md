@@ -23,3 +23,11 @@ No autherisation type was specifically identified, rather a secret is used. As s
 ### Testing
 
 Testing so far has involved PostMan and manually setting up the request headers to verify output results.
+
+## Step 3
+
+Created a secret access key for the api. hmac encrypted string consisting of server mac address, now() timestamp and port number. This value is unique per run of the server.
+
+### Assumption 1
+
+No specification given for how the user will get the API key, so currently this is generated on each run of the server and displayed as console output. I would assume in a production setting this key would be static, otherwise each reboot of the licence server would require a lot of users to be contacted with updated credentials. At present generating a key per server run is secure and works for the purposes of demonstrating authentication to the api.
