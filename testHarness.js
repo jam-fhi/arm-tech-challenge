@@ -4,17 +4,11 @@ const expect = chai.expect;
 
 const apiKey = 'NiGkiXWrQSzbPkZGCPkDHCZDh5eE3ilJQwIJk5PYvSi5mF/4dqaPBhcoggckcWUb';
 
-const licenceDetails = [];
-
 const firstNames = ["John", "Bob", "Jack", "Michael"];
 const lastNames = ["Smith", "McEwen", "Partridge", "Reeves"];
 const software = ["Software Package A", "Software Package B", "Software Package C"];
 const wrongSoftware = ["Package A", "Not A Package", "sdflkw32"];
 const testTypeName = ['', '', 'Valid Data', '', 'Invalid Software Package', 'Invalid API Key', 'Invalid Licence Key', 'Invalid Name'];
-
-// How many tests to run?
-let testTotal = 15;
-let testCount = 0;
 
 let testType = {};
 testType.valid = 2;
@@ -24,6 +18,9 @@ testType.invalidKey = 5;
 testType.invalidLicence = 6;
 
 async function testRunner() {
+	// How many tests to run?
+	const testTotal = 15;
+	let testCount = 0;
 	while(testCount < testTotal) {
 
 		let runTest = 0;
@@ -98,21 +95,29 @@ function buildTestData(testSelection) {
 	testData.validExpected = 204;
 
 	if(testSelection === testType.invalidName) {
+
 		testData.fullname = firstNames[getRandomIndex(firstNames.length)];
 		if(testData.fullname.length > 4) {
 			testData.fullname = testData.fullname.substring(0, 4);
 		}
 		testData.genExpected = 404;
+
 	} else if(testSelection === testType.invalidSoftware) {
+
 		testData.package = wrongSoftware[getRandomIndex(wrongSoftware.length)];
 		testData.genExpected = 404;
+
 	} else if(testSelection === testType.invalidKey) {
+
 		testData.apiKey = 'this-is-not-a-valid-api-key';
 		testData.genExpected = 401;
 		testData.validExpected = 401;
+
 	} else if(testSelection === testType.invalidLicence) {
+
 		testData.licence = 'this-is-not-a-valid-licence';
 		testData.validExpected = 404;
+
 	}
 
 	return testData;
@@ -128,15 +133,25 @@ function getRandomIndex(max) {
 
 function getTestType(testCount) {
 	if(testCount % testType.invalidName === 0) {
+
 		return testType.invalidName;
+
 	} else if(testCount % testType.invalidSoftware === 0) {
+
 		return testType.invalidSoftware;
+
 	} else if(testCount % testType.invalidKey === 0) {
+
 		return testType.invalidKey;
+
 	} else if(testCount % testType.invalidLicence === 0) {
+
 		return testType.invalidLicence;
+
 	} else {
+
 		return testType.valid;
+		
 	}
 }
 
