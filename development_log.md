@@ -57,3 +57,17 @@ What happens on full name or software package name validation failure? I'm retur
 ### Issue 1
 
 Originally I used parameter name "package" for the licenced product, however this is a reserved key word with 'use strict' so I changed to "software"
+
+## Step 5
+
+Validate a licence key. Without database lookup there are 3 options available to store the information to validate a licence key.
+
+1. Files - but if a database is unavailable, would there really be enough disk space?
+2. Memory - but everything will be lost when the server restarts. No persistence.
+3. Licence Key - since its encrypted, this is where I've stored the validation information.
+
+By encoding the full name and software package to create the key, when it is decrypted the full name can be compared to the one provided in the API request. Lastly, authentication has already been done by the time it comes to decrypt. The API key is used to as the encryption key. So only autherised users would ever be able to decrypt the key to validate the full name.
+
+## Step 6
+
+Acceptance tests. I've build a test generator using a few arrays of sample input data, random numbers to pick indexes and a test data builder that generates an object with the data for each type of test. Axios as a package is then used to call each API generating a key, checking returned status codes and if its good proceed to validate the licence key.
