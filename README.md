@@ -13,12 +13,12 @@ npm install
 
 # Execution
 
-node server.js
-npm start
+- node server.js
+- npm start
 
 # Tests
 
 **Note testHarness.js has apiKey = '' and the access key for the API is required to run tests**
 
-node testHardness.js
-npm test
+- node testHardness.js
+- npm test
