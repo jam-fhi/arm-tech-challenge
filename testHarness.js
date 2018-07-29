@@ -2,7 +2,7 @@ const axios = require('axios');
 const chai = require('chai');  
 const expect = chai.expect;
 
-const apiKey = 'NiGkiXWrQSzbPkZGCPkDHA2lAoKQl3AKi3DbXG1+JmXpGfwa3ZKGLzGaf55RGv1m';
+const apiKey = 'NiGkiXWrQSzbPkZGCPkDHCZDh5eE3ilJQwIJk5PYvSi5mF/4dqaPBhcoggckcWUb';
 
 const licenceDetails = [];
 

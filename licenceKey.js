@@ -2,15 +2,9 @@ const crypto = require('cryptography');
 
 module.exports = class licenceKey {
 
-	/*
-
-	Nothing to construct
-
 	constructor() {
-	
+		this.seperator = '####';
 	}
-
-	*/
 
 	async validateLicenceKey(apiKey, licenceKey, fullname) {
 		return await crypto.decrypt({
@@ -21,8 +15,8 @@ module.exports = class licenceKey {
 
 			let valid = false;
 
-			if(decoded.indexOf('####') >= 0) {
-				const details = decoded.split('####');
+			if(decoded.indexOf(this.seperator) >= 0) {
+				const details = decoded.split(this.seperator);
 				if(details[0] === fullname) {
 					valid = true;
 				}
@@ -31,7 +25,16 @@ module.exports = class licenceKey {
 			return valid;
 
 		}).catch((e) => {
-			throw e;
+			return false;
+
+			/*
+				I've commented out this throw as it comes from
+				an "final block length" error. While this is an
+				error, it only happens with an invalid key to 
+				decrypt. I therefore return false, which reports
+				back to the end user that the process failed.
+			*/
+			//throw e;
 		});
 	}
 
@@ -41,7 +44,7 @@ module.exports = class licenceKey {
 			return await crypto.encrypt({
 							encryptionAlgorithm: "hmac",
 							key: apiKey,
-							data: fullname + '####' + software
+							data: fullname + this.seperator + software
 						}).then((key) => { return key; })
 						.catch((e) => { throw e; });
 		} else {

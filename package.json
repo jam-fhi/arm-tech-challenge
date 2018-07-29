@@ -4,7 +4,8 @@
   "description": "The purpose of this technical test is to gauge an applicants ability to produce a restful API from a\r given specification.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  	"start": "node server.js",
+    "test": "node testHarness.js"
   },
   "repository": {
     "type": "git",

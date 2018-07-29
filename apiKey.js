@@ -10,7 +10,6 @@ module.exports = class apiSecretKey {
 		this.mac = '';
 		this.now = 0;
 		this.port = port;
-		this.isReady = false;
 	}
 
 	async createApiSecret() {
@@ -26,8 +25,6 @@ module.exports = class apiSecretKey {
     					data: this.mac + this.now + this.port
 					}).then((key) => { return key; })
 					.catch((e) => { throw e; });
-
-		this.isReady = true;
 
 		return this.key;
 	}
