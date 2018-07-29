@@ -17,7 +17,6 @@ module.exports = class apiSecretKey {
 		this.now = Date.now();
 
 		// Generate a secret API access key using mac address, now timestamp and sever port number.
-		// Key has been left as "secret" as a string this is easy to change to something more secure later on.
 
 		this.key = await crypto.encrypt({
 						encryptionAlgorithm: "hmac",
