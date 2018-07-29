@@ -20,5 +20,7 @@ npm install
 
 **Note testHarness.js has apiKey = '' and the access key for the API is required to run tests**
 
+The key can be found on the console, when the API server is running.
+
 - node testHardness.js
 - npm test
