@@ -1,0 +1,23 @@
+{
+  "name": "arm-tech-challenge",
+  "version": "1.0.0",
+  "description": "The purpose of this technical test is to gauge an applicants ability to produce a restful API from a\r given specification.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiefhill/arm-tech-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiefhill/arm-tech-challenge/issues"
+  },
+  "homepage": "https://github.com/jamiefhill/arm-tech-challenge#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
