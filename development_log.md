@@ -66,7 +66,7 @@ Validate a licence key. Without database lookup there are 3 options available to
 2. Memory - but everything will be lost when the server restarts. No persistence.
 3. Licence Key - since its encrypted, this is where I've stored the validation information.
 
-By encoding the full name and software package to create the key, when it is decrypted the full name can be compared to the one provided in the API request. Lastly, authentication has already been done by the time it comes to decrypt. The API key is used as the encryption key. So only autherised users would ever be able to decrypt the key to validate the full name.
+By encoding the full name and software package to create the key, when it is decrypted the full name can be compared to the one provided in the API request. Lastly, authentication has already been done by the time it comes to decrypt. So only autherised users would ever be able to decrypt the key to validate the full name.
 
 ## Step 6
 
@@ -92,4 +92,4 @@ I didn't see any over lap of test conditions, for example an invalid API key and
 
 Re-reading the specification, the part I missed initially was that the licence key should use a secret known only to the API server.
 
-Updated to create a new key from the apiKey class and store this in a licKey const that is now used to generate the licnece key, rather than reusing the API key as originally was the case.
+Updated to create a new key from the apiKey class and store this in a licKey const that is now used to generate the licence key, rather than reusing the API key as originally was the case.
